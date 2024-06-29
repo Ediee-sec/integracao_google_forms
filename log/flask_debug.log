@@ -1835,3 +1835,8 @@ INFO:werkzeug:91.92.244.109 - - [02/Jun/2024 03:28:10] "[33mCONNECT srv57c0d236
 ERROR:werkzeug:165.232.38.119 - - [02/Jun/2024 03:32:22] code 400, message Bad request version ('dÌ|£\x99\\,2\x00\x01<Ì\x14Ì\x13Ì\x15À0À,À(À$À\x14À')
 INFO:werkzeug:165.232.38.119 - - [02/Jun/2024 03:32:22] "[35m[1m\x16\x03\x01\x01þ\x01\x00\x01ú\x03\x03ß©¤\x08(¦\x99§Ù¦\x91ù#\x85çÀE-Ò\x8dê\x06\x0f\x85dÌ|£\x99\\,2\x00\x01<Ì\x14Ì\x13Ì\x15À0À,À(À$À\x14À[0m" HTTPStatus.BAD_REQUEST -
 INFO:werkzeug:205.210.31.6 - - [02/Jun/2024 04:47:22] "[33mGET / HTTP/1.1[0m" 404 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.26.220.163:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m

@@ -16,7 +16,7 @@ def cumprimento():
             return saudacao
         
 def get_link_invite():
-    with open("integracao_google_forms/documents/link_convite_discord.txt", 'r') as f:
+    with open("documents/link_convite_discord.txt", 'r') as f:
         arquivo = f.read()
     
     return arquivo

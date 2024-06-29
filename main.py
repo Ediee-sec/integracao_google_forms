@@ -23,7 +23,7 @@ import json
 #     return data
 
 def get_user():
-    with open('/home/ubuntu/codes/python/integracao_google_forms/json/dados_recebidos.json', 'r') as file:
+    with open('json/dados_recebidos.json', 'r') as file:
         json_data = json.load(file)
 
     info = json_data.get("rowData")
