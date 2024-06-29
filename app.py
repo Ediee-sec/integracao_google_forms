@@ -1,4 +1,4 @@
-from flask import Flask, send_file, request
+from flask import Flask, send_file, request, jsonify
 import json
 import logging
 import main
@@ -23,7 +23,11 @@ def webhook():
 
         return 'OK', 200
     except Exception as e:
-        return f'ERRO OCORREU UM ERRO NA APLICAÇÃO {e}', 100
+        response = {
+            "error": str(e),
+            "message": "An error occurred"
+        }
+        return jsonify(response), 500
     
     
 @app.route('/debug')
