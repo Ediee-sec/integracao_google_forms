@@ -18,7 +18,7 @@ class ConnPostgres:
     
     def insert_data(self, df):
 
-        df.to_sql('tb_controle_membros_armada',con=self.conn(), if_exists='append', index=False)
+        df.to_sql('tb_membros_guild_fury_form',con=self.conn(), if_exists='append', index=False)
 
     def query_email(self):
         # SQL query

@@ -11,11 +11,11 @@ def get_user():
 
     scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
 
-    credentials = ServiceAccountCredentials.from_json_keyfile_name('/home/ubuntu/codes/python/integracao_google_forms/documents/gcp_emerson.json', scope)
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('documents/gcp_emerson.json', scope)
 
     client = gspread.authorize(credentials)
 
-    spreadsheet = client.open_by_key('1fkhqBR4zOJMNJrVYTBJRx2mAD9RRPkAnUA7d2dhGB-Q')
+    spreadsheet = client.open_by_key('1jmneG6ShPbcnElbK-FQ3taFlih_4iaHfVw2VoRz4E7g')
 
     sheet = spreadsheet.sheet1
 
@@ -29,34 +29,22 @@ def dataframe():
     df = pd.DataFrame(get_user())
 
     df = df.rename(columns={
-        'Carimbo de data/hora': 'data_cadastro',
+        'Carimbo de data/hora': 'dt_cadastro',
         'Endereço de e-mail': 'email',
-        'Nome de usuário discord': 'discord',
+        'Nome de usuário discord': 'usr_discord',
         'Nickname': 'nickname',
         'Conjunto de armas': 'armas',
         'Função': 'funcao',
-        'Experiência no jogo': 'experiencia',
+        'Experiência no jogo': 'xp_jogo',
         'Seu estilo de jogo': 'estilo',
-        'Já é membro da guild': 'membro'
+        'Já é membro da guild': 'membro_guild'
     })
 
-    df['recebeu_email'] = 'Sim'
     return df
 
 def insert_db():
     exec = database.ConnPostgres()
     exec.insert_data(dataframe())
-
-def mail():
-    query = database.ConnPostgres()
-    resultado = query.query_email()
-
-    for index, row in resultado.iterrows():
-        email = row['email']
-        nickname = row['nickname']
-
-        exec = envia_email.SendEmail(email,nickname)
-        exec.send_email()
 
 insert_db()
         
