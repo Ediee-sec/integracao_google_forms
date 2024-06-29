@@ -7,7 +7,7 @@ app = Flask(__name__)
 app.config['TIMEOUT'] = 60
 
 # Configuração do logger do Flask
-logging.basicConfig(filename='/home/ubuntu/codes/python/integracao_google_forms/log/flask_debug.log', level=logging.DEBUG)
+logging.basicConfig(filename='integracao_google_forms/log/flask_debug.log', level=logging.DEBUG)
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -15,7 +15,7 @@ def webhook():
     try:
         data = request.json
 
-        with open('/home/ubuntu/codes/python/integracao_google_forms/json/dados_recebidos.json', 'w') as f:
+        with open('integracao_google_forms/json/dados_recebidos.json', 'w') as f:
             json.dump(data, f, indent=4)
 
         main.insert_db()
@@ -28,7 +28,7 @@ def webhook():
     
 @app.route('/debug')
 def debug():
-    return send_file('/home/ubuntu/codes/python/integracao_google_forms/log/flask_debug.log')
+    return send_file('integracao_google_forms/log/flask_debug.log')
 
 @app.route('/status')
 def status():
