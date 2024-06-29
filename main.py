@@ -26,43 +26,34 @@ def get_user():
     with open('json/dados_recebidos.json', 'r') as file:
         json_data = json.load(file)
 
-    info = json_data.get("rowData")
-
-    return info
+    return json_data
 
 def dataframe():
 
     df = json_normalize(get_user())
 
     df = df.rename(columns={
-        'coluna_1': 'data_cadastro',
-        'coluna_2': 'email',
-        'coluna_3': 'discord',
-        'coluna_4': 'nickname',
-        'coluna_5': 'armas',
-        'coluna_6': 'funcao',
-        'coluna_7': 'experiencia',
-        'coluna_8': 'estilo',
-        'coluna_9': 'membro'
-    })
+        'Carimbo de data/hora'      : 'dt_cadastro',
+        'Endereço de e-mail'        : 'email',
+        'Nome de usuário discord'   : 'usr_discord',
+        'Nickname'                  : 'nickname',
+        'Conjunto de armas'         : 'armas',
+        'Função'                    : 'funcao',
+        'Experiência no jogo'       : 'xp_jogo',
+        'Seu estilo de jogo'        : 'estilo',
+        'Já é membro da guild'      : 'membro_guild'
+    })  
 
-    df['recebeu_email'] = 'Sim'
     return df
 
 def insert_db():
     exec = database.ConnPostgres()
     exec.insert_data(dataframe())
 
-def mail():
-    query = database.ConnPostgres()
-    resultado = query.query_email()
-
-    for index, row in resultado.iterrows():
-        email = row['email']
-        nickname = row['nickname']
-
-        exec = envia_email.SendEmail(email,nickname)
-        exec.send_email()
+def mail(email,nickname,classe):
+    
+    exec = envia_email.SendEmail(email,nickname,classe)
+    exec.send_email()
 
         
 

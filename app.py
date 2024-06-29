@@ -2,6 +2,7 @@ from flask import Flask, send_file, request
 import json
 import logging
 import main
+import create_pdf
 
 app = Flask(__name__)
 app.config['TIMEOUT'] = 60
@@ -16,8 +17,9 @@ def webhook():
         with open('json/dados_recebidos.json', 'w') as f:
             json.dump(data, f, indent=4)
 
-        main.insert_db()
-        main.mail()
+        create_pdf.instance_pdf(data, data['Nickname'])
+        #main.insert_db()
+        main.mail(data['Endereço de e-mail'],data['Nickname'],data['Função'])
 
         return 'OK', 200
     except Exception as e:

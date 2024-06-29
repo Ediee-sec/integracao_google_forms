@@ -23,8 +23,8 @@ class ConnPostgres:
     def query_email(self):
         # SQL query
         query = """
-            SELECT email, nickname
-            FROM tb_controle_membros_armada
+            SELECT email, nickname, classe
+            FROM tb_membros_guild_fury_form
             ORDER BY data_cadastro DESC LIMIT 1;
         """
         
