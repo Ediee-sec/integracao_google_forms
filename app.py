@@ -6,8 +6,6 @@ import main
 app = Flask(__name__)
 app.config['TIMEOUT'] = 60
 
-# Configuração do logger do Flask
-logging.basicConfig(filename='log/flask_debug.log', level=logging.DEBUG)
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
