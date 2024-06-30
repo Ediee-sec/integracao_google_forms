@@ -26,8 +26,7 @@ class SendEmail:
         text_part = MIMEText(body, 'html')
         msg.attach(text_part)
         
-        filename = os.listdir('pdf/') # Função para determinar o nome do PDF dinâmico
-        attachment_path = os.path.join('pdf/', filename[0])
+        attachment_path = os.path.join('pdf/', f'respostas_form_{self.nome}.pdf')
 
         with open(attachment_path, 'rb') as file:
             attachment = MIMEApplication(file.read(), Name=attachment_path.split('/')[-1])
@@ -37,3 +36,5 @@ class SendEmail:
         with smtplib.SMTP_SSL('smtp.zoho.com', 465) as smtp_server:
             smtp_server.login(self.sender, self.pwd)
             smtp_server.sendmail(self.sender, self.recipients, msg.as_string())
+            
+        os.remove

@@ -1,23 +1,40 @@
 from fpdf import FPDF
 from PIL import Image
 
-# Determine as dimensões originais da imagem
-image_path = 'logo.png'
+# Caminho da imagem
+image_path = 'img/logo.png'
 image = Image.open(image_path)
 image_width, image_height = image.size
 
 # Converta as dimensões para milímetros (1 inch = 25.4 mm)
 mm_per_inch = 25.4
-image_width_mm = image_width * mm_per_inch / image.info['dpi'][0]
-image_height_mm = image_height * mm_per_inch / image.info['dpi'][1]
+
+# Verifique se 'dpi' está presente em image.info, caso contrário, defina um valor padrão
+if 'dpi' in image.info:
+    dpi = image.info['dpi']
+else:
+    dpi = (72, 72)  # Valor padrão de DPI (ajuste conforme necessário)
+
+image_width_mm = image_width * mm_per_inch / dpi[0]
+image_height_mm = image_height * mm_per_inch / dpi[1]
+
+# Defina o tamanho máximo da imagem em milímetros para se ajustar à página A4
+max_width_mm = 190  # Margem de 10 mm de cada lado
+max_height_mm = 277  # Margem de 10 mm de cada lado
+
+# Redimensione a imagem se necessário para caber na página
+if image_width_mm > max_width_mm or image_height_mm > max_height_mm:
+    scaling_factor = min(max_width_mm / image_width_mm, max_height_mm / image_height_mm)
+    image_width_mm *= scaling_factor
+    image_height_mm *= scaling_factor
 
 # Crie uma classe PDF
 class PDF(FPDF):
     def header(self):
-        # Adiciona a imagem logo.png centralizada
+        # Adiciona a imagem centralizada
         page_width = self.w
         x_position = (page_width - image_width_mm) / 2
-        self.image(image_path, x = x_position, y = 10, w = image_width_mm, h = image_height_mm)
+        self.image(image_path, x=x_position, y=10, w=image_width_mm, h=image_height_mm)
         self.set_y(10 + image_height_mm + 10)  # Ajusta a posição do título após a imagem
         self.set_font('Arial', 'B', 12)
         self.cell(0, 10, 'Suas respostas ao recrutamento Fury', 0, 1, 'C')

@@ -27,7 +27,7 @@ def get_user():
 def dataframe():
 
     df = pd.DataFrame(get_user())
-
+    df = df.drop(['Status_SAW_emersonrox8@gmail.com (2olmqk) WEBHOOK'], axis=1)
     df = df.rename(columns={
         'Carimbo de data/hora': 'dt_cadastro',
         'Endereço de e-mail': 'email',

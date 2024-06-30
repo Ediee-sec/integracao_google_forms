@@ -18,7 +18,7 @@ def webhook():
             json.dump(data, f, indent=4)
 
         create_pdf.instance_pdf(data, data['Nickname'])
-        main.insert_db()
+        #main.insert_db()
         main.mail(data['Endereço de e-mail'],data['Nickname'],data['Função'])
 
         return 'OK', 200
