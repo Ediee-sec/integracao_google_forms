@@ -3,6 +3,7 @@ import json
 import logging
 import main
 import create_pdf
+from msg_to_staff import DiscordWebhook
 
 app = Flask(__name__)
 app.config['TIMEOUT'] = 60
@@ -20,6 +21,9 @@ def webhook():
         create_pdf.instance_pdf(data, data['Nickname'])
         main.insert_db()
         main.mail(data['Endereço de e-mail'],data['Nickname'],data['Função'])
+        
+        executor = DiscordWebhook()
+        executor.send_recruitment_message(data['Nickname'], data['Nome de usuário discord'], data['Conjunto de armas'], data['Função'], data['Experiência no jogo'])
 
         return 'OK', 200
     except Exception as e:
