@@ -23,6 +23,13 @@ def get_link_invite():
 
 
 def html(nome, classe):
+    if 'healer' in classe.lower():
+        classe = 'Healer'
+    elif 'tank' in classe.lower():
+        classe = 'Tank'
+    elif 'dps' in classe.lower():
+        classe = 'DPS'
+    
     html_content = f"""
         <!DOCTYPE html>
             <html lang="en">

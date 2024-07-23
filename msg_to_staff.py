@@ -15,20 +15,20 @@ class DiscordWebhook:
             print(f'Erro ao enviar mensagem: {response.status_code}')
             print(response.json())
             
-    def send_recruitment_message(self, name, discord_tag, weapon, role, user_id):
-        def get_role_emoji(role):
-            if role.lower() == 'healer':
+    def send_recruitment_message(self, name, discord_tag, weapon, user_id):
+        def get_role_emoji(weapon):
+            if  'healer' in weapon.lower():
                 return '⚕️'
-            elif role.lower() == 'tank':
+            elif 'tank' in weapon.lower():
                 return '🛡️'
-            elif role.lower() == 'dps':
+            elif 'dps' in weapon.lower():
                 return '⚔️'
-            elif role.lower() == 'assassino':
+            elif 'assassino' in weapon.lower():
                 return '🗡️'
             else:
                 return ''
 
-        role_emoji = get_role_emoji(role)
+        role_emoji = get_role_emoji(weapon)
         
         embed = {
             "content": "",  # Mensagem de conteúdo em branco
@@ -38,9 +38,8 @@ class DiscordWebhook:
                     "description": (
                         f"**Detalhes**: \n\n"
                         f"**Discord**: {discord_tag} \n"
-                        f"**Armas**: {weapon} \n"
-                        f"**Função**: {role} {role_emoji} \n"
-                        f"**ID**: {user_id}"
+                        f"**Classe**: {weapon} {role_emoji}\n"
+                        f"**Experiência**: {user_id}"
                     ),
                     "color": 800000,  # Valor hexadecimal da cor do embed
                     "footer": {

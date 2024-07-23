@@ -26,12 +26,12 @@ class SendEmail:
         text_part = MIMEText(body, 'html')
         msg.attach(text_part)
         
-        attachment_path = os.path.join('pdf/', f'respostas_form_{self.nome}.pdf')
+        # attachment_path = os.path.join('pdf/', f'respostas_form_{self.nome}.pdf')
 
-        with open(attachment_path, 'rb') as file:
-            attachment = MIMEApplication(file.read(), Name=attachment_path.split('/')[-1])
-        attachment['Content-Disposition'] = f'attachment; filename="{attachment_path.split("/")[-1]}"'
-        msg.attach(attachment)
+        # with open(attachment_path, 'rb') as file:
+        #     attachment = MIMEApplication(file.read(), Name=attachment_path.split('/')[-1])
+        # attachment['Content-Disposition'] = f'attachment; filename="{attachment_path.split("/")[-1]}"'
+        # msg.attach(attachment)
 
         with smtplib.SMTP_SSL('smtp.zoho.com', 465) as smtp_server:
             smtp_server.login(self.sender, self.pwd)

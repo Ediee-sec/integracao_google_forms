@@ -18,13 +18,13 @@ class ConnPostgres:
     
     def insert_data(self, df):
 
-        df.to_sql('tb_membros_guild_fury_form',con=self.conn(), if_exists='append', index=False)
+        df.to_sql('tb_membros_guild_fury_form_v2',con=self.conn(), if_exists='append', index=False)
 
     def query_email(self):
         # SQL query
         query = """
             SELECT email, nickname, classe
-            FROM tb_membros_guild_fury_form
+            FROM tb_membros_guild_fury_form_v2
             ORDER BY data_cadastro DESC LIMIT 1;
         """
         
@@ -35,6 +35,25 @@ class ConnPostgres:
         df = pd.read_sql_query(query, con=engine)
         
         return df
+    
+    def query_truncate_table(self):
+        query = text("""
+        TRUNCATE TABLE tb_membros_guild_fury_form_v2;
+        """)
+        
+        # Obter o engine da conexão
+        engine = self.conn()
+        
+        # Usar o engine para obter uma conexão
+        with engine.connect() as connection:
+            # Iniciar uma transação
+            with connection.begin() as transaction:
+                try:
+                    connection.execute(query)
+                    transaction.commit()  # Confirma a transação
+                except Exception as e:
+                    transaction.rollback()  # Desfaz a transação em caso de erro
+                    print(f"Erro ao truncar a tabela: {e}")
     
     
 
