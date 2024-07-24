@@ -19,7 +19,7 @@ def webhook():
             json.dump(data, f, indent=4)
 
         #create_pdf.instance_pdf(data, data['Nickname que você costuma usar in-game'])
-        #main.insert_db()
+        main.insert_db()
         main.mail(data['Endereço de e-mail'],data['Nickname que você costuma usar in-game'],data['Qual sua classe principal'])
         
         executor = DiscordWebhook()
