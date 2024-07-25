@@ -39,7 +39,7 @@ def webhook():
         with open('json/dados_recebidos.json', 'w') as f:
             json.dump(data, f, indent=4)
 
-        create_pdf.instance_pdf(data, data['Nickname que você costuma usar in-game'])
+        #create_pdf.instance_pdf(data, data['Nickname que você costuma usar in-game'])
         main.insert_db()
         main.mail(data['Endereço de e-mail'],data['Nickname que você costuma usar in-game'],data['Qual sua classe principal'])
         
@@ -78,5 +78,7 @@ if __name__ == '__main__':
     
     # Executar o bot do Discord
     bot.run(DISCORD_TOKEN)
+    
+    
 
 
