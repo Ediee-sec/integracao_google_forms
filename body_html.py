@@ -127,8 +127,8 @@ def html(nome, classe):
                     <p>Somos uma comunidade de MMORPG competitiva, que valoriza as pessoas e a diversão sem perder a competitividade.</p>
                     <div class="btn-container">
                         <a href="https://discord.gg/furyteam" class="btn btn-discord">Junte-se ao nosso Discord</a>
-                        <a href="http://guildfury.com.br" class="btn btn-site">Visite nosso Site</a>
-                        <a href="https://tlacademy.mercadoonlinedigital.com/" class="btn btn-guias">Guias Throne And Liberty</a>
+                        <a href="http://guildfury.com" class="btn btn-site">Visite nosso Site</a>
+                        <a href="https://www.instagram.com/guildfury/" class="btn btn-guias">Instagram Fury</a>
                     </div>
                     <div class="img-container">
                         <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExajBxcWI3Z3YzcDJrcmFuOGtkbmx2a2pvaWl3d2t0ZHJlZGJ4eWprbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/pzgdncQZ6Me0H4bQnU/giphy.gif" alt="Descrição da Imagem">
