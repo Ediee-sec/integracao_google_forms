@@ -51,6 +51,7 @@ def webhook():
         
         return 'OK', 200
     except Exception as e:
+        print(e)
         response = {
             "error": str(e),
             "message": "An error occurred"
@@ -78,7 +79,6 @@ if __name__ == '__main__':
     
     # Executar o bot do Discord
     bot.run(DISCORD_TOKEN)
-    
     
 
 
