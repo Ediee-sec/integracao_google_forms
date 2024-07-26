@@ -46,7 +46,7 @@ def webhook():
         executor = DiscordWebhook()
         executor.send_recruitment_message(data['Nickname que você costuma usar in-game'], data['Nome de usuário Discord'].lower(), data['Qual sua classe principal'], data['Experiência no jogo'])
 
-        discord_username = data['Nome de usuário Discord']
+        discord_username = data['Nome de usuário Discord'].lower()
         bot.loop.create_task(assign_role(discord_username))
         
         return 'OK', 200
