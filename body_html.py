@@ -122,9 +122,9 @@ def html(nome, classe):
             <body>
                 <div class="container">
                     <h1>{cumprimento()}, {nome}!</h1>
-                    <p>Bem-vindo à <span class="highlight">Fury</span>.</p>
-                    <p>Estamos contentes em ter um <span class="highlight">{classe}</span> como você em nossa guild <span class="emoji">😉</span></p>
-                    <p>Somos uma comunidade de MMORPG competitiva, que valoriza as pessoas e a diversão sem perder a competitividade.</p>
+                    <p>Saudações da <span class="highlight">Fury!</span>.</p>
+                    <p>Estamos contentes por termos um(a) <span class="highlight">{classe}</span> como você interessado(a) em nossa guilda! 😉</p>
+                    <p>Somos uma comunidade de MMORPG competitiva, que valoriza as pessoas e a diversão, sem perder a competitividade.</p>
                     <div class="btn-container">
                         <a href="https://discord.gg/furyteam" class="btn btn-discord">Junte-se ao nosso Discord</a>
                         <a href="http://guildfury.com" class="btn btn-site">Visite nosso Site</a>
